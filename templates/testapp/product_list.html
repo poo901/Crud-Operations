@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      h2{
+        background-color: red;
+        color: black;
+        border:2px solid black;
+      }
+      table{
+        color: red;
+        border-color: green;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>List of Products</h2>
+    <table  border="1px" >
+      <tr>
+        <th>name</th>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Category ID</th>
+      </tr>
+{% for p in product_list%}
+      <tr>
+        <td>{{p.pname}}</td>
+        <td>{{p.pid}}</td>
+        <td>{{p.category}}</td>
+        <td>{{p.categoryid}}</td>
+      </tr>
+    {% endfor%}
+    </table>
+
+<div class="pagination">
+  <span>
+    {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{page_obj.previous_page_number}}">previous</a>
+    {% endif%}
+
+
+    <span>
+      Page {{page_obj.number}} of {{page_obj.paginator.num_pages}},
+    </span>
+
+    {% if page_obj.has_next %}
+     <a href="?pages={{page_obj.next_page_number}}">next</a>
+     <a href="?pages={{page_obj.paginator.num_pages}}">last &raquo;</a>
+    {%endif%}
+
+ </span>
+
+  </body>
+</html>
